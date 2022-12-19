@@ -112,6 +112,8 @@ class Notification implements \JsonSerializable
      */
     private $content;
 
+    private $title;
+
     /**
      * Use this only if you want to pass custom data to the application (JSON format) or omit this parameter. Please
      * note that iOS push is limited to 256 bytes.
@@ -428,6 +430,11 @@ class Notification implements \JsonSerializable
         return $this->content;
     }
 
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
     /**
      * Gets additional data to attach to the notification, use this only if you want to pass custom data to the
      * application (JSON format) or omit this parameter. Please note that iOS push is limited to 256 bytes.
@@ -664,6 +671,7 @@ class Notification implements \JsonSerializable
         // Optional parameters
         isset($this->campain) ? $json['campaign'] = $this->campain : false;
         isset($this->content) ? $json['content'] = $this->content : false;
+        isset($this->title) ? $json['title'] = $this->title : false;
         isset($this->data) ? $json['data'] = $this->data : false;
         isset($this->devices) ? $json['devices'] = $this->devices : false;
         isset($this->filter) ? $json['filter'] = $this->filter : false;
@@ -846,6 +854,13 @@ class Notification implements \JsonSerializable
     public function setContent($content)
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
 
         return $this;
     }
